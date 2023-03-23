@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useMemo, useState } from "react";
 import Color from "./Color";
 
 const Colors = () => {
@@ -6,13 +6,23 @@ const Colors = () => {
   const colors = ["red", "blue", "green", "yellow"];
 
   const [currentIndex, setCurrentIndex] = useState(1);
-  const [next, setNext] = useState(2);
-  const [prev, setPrev] = useState(0);
+  // const [next, setNext] = useState(2);
+  // const [prev, setPrev] = useState(0);
 
-  useEffect(() => {
-    setNext(currentIndex === colors.length - 1 ? 0 : currentIndex + 1);
-    setPrev(currentIndex === 0 ? colors.length - 1 : currentIndex - 1);
-  }, [currentIndex, colors.length]);
+  // useEffect(() => {
+  //   setNext(currentIndex === colors.length - 1 ? 0 : currentIndex + 1);
+  //   setPrev(currentIndex === 0 ? colors.length - 1 : currentIndex - 1);
+  // }, [currentIndex, colors.length]);
+
+  const next = useMemo(
+    () => (currentIndex === colors.length - 1 ? 0 : currentIndex + 1),
+    [currentIndex, colors.length]
+  );
+  const prev = useMemo(
+    () => (currentIndex === 0 ? colors.length - 1 : currentIndex - 1),
+    [currentIndex, colors.length]
+  );
+
   return (
     <div
       style={{

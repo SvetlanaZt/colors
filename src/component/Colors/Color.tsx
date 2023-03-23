@@ -30,4 +30,5 @@ const Color: FC<Event> = ({
     />
   );
 };
+
 export default React.memo(Color);
